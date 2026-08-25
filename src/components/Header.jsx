@@ -27,17 +27,17 @@ export default function Header({ totalTasks = 0, completedTasks = 0, onResetClic
         </button>
       </div>
 
-      {/* TOP LINE: NIKHIL'S HUSTLE 🚀 SINGLE ALONE IN TOP CENTER */}
-      <div className="mb-2 animate-fade-in">
-        <span className="text-sm md:text-base font-black uppercase tracking-[0.25em] text-amber-600 bg-amber-500/15 border border-amber-500/30 px-5 py-1 rounded-full backdrop-blur-md">
-          NIKHIL'S HUSTLE 🚀
+      {/* TOP LINE: DISASTER (AFTER EFFECT) SKILLS NEEDED 🚀 */}
+      <div className="mb-2 animate-fade-in text-center">
+        <span className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-amber-600 bg-amber-500/15 border border-amber-500/30 px-5 py-1.5 rounded-full backdrop-blur-md">
+          DISASTER (AFTER EFFECT) SKILLS NEEDED 🚀
         </span>
       </div>
 
-      {/* SECOND LINE: "21-Day Sprint Roadmap" on Left, Progress "0/63 (0%)" on Right */}
+      {/* SECOND LINE: "5-Day Disaster Fast-Track Roadmap" on Left, Progress on Right */}
       <div className="w-full max-w-4xl flex items-center justify-between mt-1 px-4">
         <h1 className="text-lg md:text-xl font-black text-slate-900 drop-shadow-xs">
-          21-Day Sprint Roadmap
+          5-Day Disaster Fast-Track Roadmap
         </h1>
 
         <div className="flex items-center gap-3 bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/30">

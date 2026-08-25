@@ -6,11 +6,11 @@ import PendingRemarks from './PendingRemarks';
 import UserNotes from './UserNotes';
 
 const QUOTES = [
-  "NOW OR NEVER.",
-  "GRIND TODAY. GLORY TOMORROW.",
-  "DREAM IT. BUILD IT. SHIP IT.",
-  "NO SHORTCUTS. ONLY COMMITS.",
-  "ONE DAY OR DAY ONE. YOU DECIDE."
+  "PREPARE TODAY. SAVE LIVES TOMORROW.",
+  "OFFLINE FIRST. ALWAYS READY.",
+  "CODE THE SOLUTION. BE THE RESCUE.",
+  "FAST PROTOTYPING. REAL IMPACT.",
+  "BUILD FOR DISASTER. SHIP FOR RELIEF."
 ];
 
 const formatTime = (totalSeconds) => {
@@ -29,7 +29,7 @@ export default function DayPage({
   noteText = '',
   onNoteChange,
   onBack,
-  totalDays = 21,
+  totalDays = 5,
   grindMode,
   grindTime,
   onGrindToggle,
@@ -57,7 +57,7 @@ export default function DayPage({
 
   return (
     <div className={`min-h-screen pb-24 transition-all duration-700 ease-in-out ${grindMode ? 'grind-mode' : 'light-mode'}`}>
-      {/* FLOATING HEADER (No Heavy Bar / Container) */}
+      {/* FLOATING HEADER */}
       <header className="px-6 py-4 transition-colors duration-500 max-w-7xl mx-auto">
         <div className="flex items-center justify-between gap-4">
 
@@ -88,13 +88,13 @@ export default function DayPage({
             </button>
           </div>
 
-          {/* CENTER: Prominent "NIKHIL'S HUSTLE 🚀" Header */}
+          {/* CENTER: DISASTER (AFTER EFFECT) SKILLS NEEDED 🚀 */}
           <div className="flex-2 text-center flex flex-col items-center">
-            <span className="text-xs font-black uppercase tracking-widest text-amber-500 bg-amber-500/15 border border-amber-500/25 px-3.5 py-0.5 rounded-full backdrop-blur-md">
-              NIKHIL'S HUSTLE 🚀
+            <span className="text-[11px] font-black uppercase tracking-widest text-amber-500 bg-amber-500/15 border border-amber-500/25 px-3.5 py-0.5 rounded-full backdrop-blur-md">
+              DISASTER (AFTER EFFECT) SKILLS NEEDED 🚀
             </span>
             <h1 className={`text-base md:text-lg font-black mt-1 ${grindMode ? 'text-white' : 'text-slate-900'}`}>
-              DAY {String(dayNumber).padStart(2, '0')}: {day.title}
+              DAY {String(dayNumber).padStart(2, '0')} OF {totalDays}: {day.title}
             </h1>
           </div>
 
@@ -130,7 +130,7 @@ export default function DayPage({
             <p className={`text-[11px] font-bold tracking-[0.25em] text-amber-400/80 transition-opacity duration-400 ${
               quoteVisible ? 'opacity-100' : 'opacity-0'
             }`}>
-              🔥 {QUOTES[quoteIndex]} 🔥
+              🚨 {QUOTES[quoteIndex]} 🚨
             </p>
           </div>
         )}
@@ -206,7 +206,7 @@ export default function DayPage({
         </div>
       </main>
 
-      {/* Floating "I'M DONE FOR TODAY" Button (Bottom Right) */}
+      {/* Floating "I'M DONE FOR TODAY" Button */}
       <button
         onClick={onImDone}
         className="

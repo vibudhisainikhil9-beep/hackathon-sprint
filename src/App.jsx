@@ -8,7 +8,9 @@ import DayPage from './components/DayPage.jsx'
 import ResetModal from './components/ResetModal.jsx'
 
 function App() {
-  // ===== Initial state structures =====
+  const TOTAL_DAYS = 5
+
+  // Initial state structures for 5 days
   const initialProgress = {}
   const initialNotes = {}
   DAYS_DATA.forEach(day => {
@@ -16,20 +18,20 @@ function App() {
     initialNotes[day.day] = ''
   })
 
-  // ===== Persisted State =====
-  const [progress, setProgress] = useLocalStorage('hackathon-progress', initialProgress)
-  const [currentDay, setCurrentDay] = useLocalStorage('hackathon-current-day', 1)
-  const [completedDays, setCompletedDays] = useLocalStorage('hackathon-completed-days', [])
-  const [grindTimers, setGrindTimers] = useLocalStorage('hackathon-grind-timers', {})
-  const [grindMode, setGrindMode] = useLocalStorage('hackathon-grind-active', false)
-  const [userNotes, setUserNotes] = useLocalStorage('hackathon-user-notes', initialNotes)
+  // Persisted State
+  const [progress, setProgress] = useLocalStorage('disaster-progress-v2', initialProgress)
+  const [currentDay, setCurrentDay] = useLocalStorage('disaster-current-day-v2', 1)
+  const [completedDays, setCompletedDays] = useLocalStorage('disaster-completed-days-v2', [])
+  const [grindTimers, setGrindTimers] = useLocalStorage('disaster-grind-timers-v2', {})
+  const [grindMode, setGrindMode] = useLocalStorage('disaster-grind-active-v2', false)
+  const [userNotes, setUserNotes] = useLocalStorage('disaster-user-notes-v2', initialNotes)
 
-  // ===== View Navigation State =====
+  // View Navigation State
   const [currentView, setCurrentView] = useState('calendar') // 'calendar' | 'day'
   const [activeDayNumber, setActiveDayNumber] = useState(1)
   const [showResetModal, setShowResetModal] = useState(false)
 
-  // ===== Stopwatch Timer =====
+  // Stopwatch Timer
   const [currentTimer, setCurrentTimer] = useState(grindTimers[activeDayNumber] || 0)
   const timerRef = useRef(null)
 
@@ -115,12 +117,12 @@ function App() {
     return pending
   }, [progress, completedDays])
 
-  // Toggle Grind Mode (inside Day Page)
+  // Toggle Grind Mode
   const handleGrindToggle = useCallback(() => {
     setGrindMode(prev => !prev)
   }, [setGrindMode])
 
-  // Click "I'M DONE FOR TODAY" -> Advances directly to next day's task page!
+  // Click "I'M DONE FOR TODAY" -> Advances to next day or back to calendar if day 5 done
   const handleImDone = useCallback(() => {
     setGrindTimers(timers => ({ ...timers, [activeDayNumber]: currentTimer }))
 
@@ -137,12 +139,12 @@ function App() {
       colors: ['#f59e0b', '#10b981', '#a855f7'],
     })
 
-    if (activeDayNumber < 21) {
+    if (activeDayNumber < TOTAL_DAYS) {
       const nextDay = activeDayNumber + 1
       setActiveDayNumber(nextDay)
       setCurrentDay(nextDay)
       setCurrentTimer(0)
-      setCurrentView('day') // DIRECTLY LOAD NEXT DAY'S PAGE!
+      setCurrentView('day')
     } else {
       setCurrentView('calendar')
     }
@@ -196,7 +198,7 @@ function App() {
             onResetClick={() => setShowResetModal(true)}
           />
 
-          <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
             <CalendarGrid
               days={DAYS_DATA}
               progress={progress}
@@ -207,7 +209,7 @@ function App() {
           </main>
 
           <footer className="text-center pb-8 text-slate-500 font-mono text-xs">
-            🚀 NIKHIL'S HUSTLE — 21-DAY HACKATHON SPRINT 🚀
+            🚨 DISASTER (AFTER EFFECT) SKILLS NEEDED 🚀 — 5-DAY FAST-TRACK ROADMAP
           </footer>
         </div>
       ) : (
@@ -221,7 +223,7 @@ function App() {
           noteText={userNotes[activeDayNumber] || ''}
           onNoteChange={handleNoteChange}
           onBack={handleBackToCalendar}
-          totalDays={21}
+          totalDays={TOTAL_DAYS}
           grindMode={grindMode}
           grindTime={currentTimer}
           onGrindToggle={handleGrindToggle}
