@@ -3,8 +3,8 @@ import DayCard from './DayCard';
 
 export default function CalendarGrid({ days = [], progress = {}, currentDay, completedDays = [], onDayClick }) {
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 animate-slide-up">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 animate-slide-up">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         {days.map((day) => {
           const dayNum = day.day;
           const dayProgress = progress[dayNum] || [];
